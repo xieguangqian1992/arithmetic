@@ -1,0 +1,25 @@
+/**
+ * @param {string} str
+ * @return {number}
+ */
+var myAtoi = function(str) {
+    const temp = str.replace(/\s+/g, '');
+    const f = 1;
+    let sum = 0;
+    for (let i = 0; i < temp.length; i++) {
+        
+        if (Number(temp[i]) >= 0 && Number(temp[i]) <= 9) {
+            // if (INT_MAX / 10 > sum) {
+            //     return 0
+            // }
+            sum = sum * 10 + Number(temp[i]);
+        } else if (i ==0 && temp[i] == '-' || temp[i] == '+') {
+            if (temp[i] == '-') {
+                f = -1;
+            }
+        } else {
+            return 0;
+        }
+    }
+    return sum * f;
+};

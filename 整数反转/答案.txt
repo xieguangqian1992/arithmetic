@@ -1,0 +1,16 @@
+/**
+ * @param {number} x
+ * @return {number}
+ */
+var reverse = function(x) {
+    let temp = 1;
+    if (x < 0) {
+        x *= -1;
+        temp = -1;
+    }
+    let t = temp.toString();
+    t = t.split("").reverse();
+    
+    let sum = Number(t);
+    return sum * temp;
+};
