@@ -1,0 +1,43 @@
+/**
+ * @param {string[]} strs
+ * @return {string}
+ */
+var longestCommonPrefix = function(strs) {
+    
+    let result = '';
+    if (strs.length == 0) {
+        return result;
+    }
+    if (strs.length == 1) {
+        return strs[0];
+    }
+    
+    const str1 = strs[0];
+    const str2 = strs[1];
+    // 计算这两个的公共子串集合
+    const commonStr = [];
+    const tempStr = str1.length >= str2.length ? str2 : str1;
+    const otherStr = str1.length >= str2.length ? str1 : str2;
+    let i = 0;
+    for (let j = i; j < tempStr.length; j++) {
+        const substr = tempStr.substring(i,j + 1);
+        if (otherStr.startsWith(substr)) {
+              commonStr.push(substr);
+        }
+    }
+    // console.log('commonStr', commonStr);
+    for (let i = 0; i < commonStr.length; i++) {
+        let hasCommon = true;
+        const common = commonStr[i];
+        for (let j = 2; j < strs.length; j++) {
+            if (!strs[j].startsWith(common)) {
+                hasCommon = false;
+                break;
+            }
+        }
+        if (hasCommon && common.length > result.length) {
+            result = common;
+        }
+    }
+    return result; 
+};
