@@ -1,0 +1,21 @@
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var romanToInt = function(s) {
+    const map = ['I','IV','V','IX','X','XL','L','XC','C','CD','D','CM','M'];
+    const num = [1,4,5,9,10,40,50,90,100,400,500,900,1000];
+    let ans = 0;
+    for (let i = 0; i < s.length;) {
+        const index = map.indexOf(s.substring(i, i + 2));
+        if (i + 1 < s.length && index > -1) {
+            ans += num[index];
+            i += 2
+        } else {
+           const index = map.indexOf(s.substring(i, i + 1));
+           ans += num[index];
+            i += 1;
+        }
+    }
+    return ans;
+};
