@@ -1,0 +1,28 @@
+/**
+ * @param {number[][]} intervals
+ * @return {number[][]}
+ */
+var merge = function(intervals) {
+    const result = [];
+    if (intervals.length <= 0) {
+        return result;
+    }
+    if (intervals.length == 1) {
+        return intervals[0];
+    }
+    let i = 1;
+    let temp = intervals[0];
+    result.push(temp);
+    while (i <= intervals.length - 1) {
+        const pop = result.pop();
+        const next = intervals[i];
+        if (pop[1] > next[0]) {  // 有交叉
+            result.push([pop[0], next[1]]);
+        } else { // 没有交叉
+            result.push(pop);
+            result.push(next);
+        }
+        i++;
+    }
+    return result;
+};
