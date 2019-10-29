@@ -1,0 +1,39 @@
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var longestPalindrome = function(s) {
+        if (s.length < 0) {
+            return s;
+        }
+        var maxLength = 0;
+        var i = 0;
+        for (i = 0; i < s.length; i ++) {
+            var begin = caculateIndex(s, i , i);
+            var end = caculateIndex(s, i, i + 1);
+            
+            if (maxLength < Max(begin, end)) {
+                maxLength = Max(begin, end);
+                center = i;
+            }
+        }
+        return s.substring(center - (maxLength - 1) / 2, center + maxLength / 2 + 1);
+};
+
+var caculateIndex = function(s,  begin,  end) {
+       var left = begin, right = end;
+        while(left >= 0 && right < s.length && s.charAt(left) == s.charAt(right)) {
+            left --;
+            right ++;
+        }
+        return right - left - 1;
+    }
+    
+    
+   var  Max = function( a,  b) {
+        if (a > b) {
+            return a;
+        } else {
+            return b;
+        }
+    }
